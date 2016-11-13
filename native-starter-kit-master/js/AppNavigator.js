@@ -14,6 +14,8 @@ import BlankPage from './components/blankPage';
 import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
 import { statusBarColor } from './themes/base-theme';
+import DateSelect from './components/dateSelect/';
+
 
 const {
   popRoute,
@@ -83,7 +85,7 @@ class AppNavigator extends Component {
       case 'tabSelect':
         return <TabSelect />;
       case 'calendar':
-        return <BlankPage />;
+        return <DateSelect />;
       default :
         return <Login />;
     }

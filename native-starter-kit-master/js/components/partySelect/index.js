@@ -49,23 +49,17 @@ class PartySelect extends Component {
         <Content>
 
         <Card >
-            <CardItem button onPress = {() => this.pushRoute('tabSelect')}>
+            <CardItem button onPress = {() => this.pushRoute('calendar')}>
+            <Text>Small Party</Text>
             <Image source={smallParty} />
-            </CardItem>
-            <CardItem button onPress = {() => this.pushRoute('tabSelect')}>
-              <Text>Small Party</Text>
-              <Text > {'<20 People'} </Text>
             </CardItem>
         </Card>
 
 
         <Card>
-            <CardItem button onPress = {() => this.pushRoute('tabSelect')}>
+            <CardItem button onPress = {() => this.pushRoute('calendar')}>
+            <Text>Large Party</Text>
             <Image source={largeParty} />
-            </CardItem>
-            <CardItem button onPress = {() => this.pushRoute('tabSelect')}>
-              <Text>Large Party</Text>
-              <Text > {'20+ People'} </Text>
             </CardItem>
         </Card>
         </Content>

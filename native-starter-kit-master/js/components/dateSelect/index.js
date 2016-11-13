@@ -11,6 +11,8 @@ import { openDrawer } from '../../actions/drawer';
 import { setIndex } from '../../actions/list';
 import myTheme from '../../themes/base-theme';
 import styles from './styles';
+import DatePicker from 'react-native-datepicker'
+
 
 const {
   reset,
@@ -20,7 +22,11 @@ const smallParty = require('../../../images/small.jpg')
 const largeParty = require('../../../images/large.jpg')
 
 
-class PartySelect extends Component {
+class DateSelect extends Component {
+  constructor(props){
+    super(props)
+    this.state = {date:"2016-05-15"}
+  }
 
   static propTypes = {
     name: React.PropTypes.string,
@@ -38,7 +44,7 @@ class PartySelect extends Component {
     this.props.setIndex(index);
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
-  
+
   render() {
     return (
       <Container theme={myTheme} style={styles.container}>
@@ -50,27 +56,30 @@ class PartySelect extends Component {
           </Button>
         </Header>
         <Content>
-
-        <Card >
-            <CardItem button onPress = {() => this.pushRoute('login')}>
-            <Image source={smallParty} />
-            </CardItem>
-            <CardItem button onPress = {() => this.pushRoute('login')}>
-              <Text>Small Party</Text>
-              <Text > {'<20 People'} </Text>
-            </CardItem>
-        </Card>
-
-
-        <Card>
-            <CardItem button onPress = {() => this.pushRoute('login')}>
-            <Image source={largeParty} />
-            </CardItem>
-            <CardItem button onPress = {() => this.pushRoute('login')}>
-              <Text>Large Party</Text>
-              <Text > {'20+ People'} </Text>
-            </CardItem>
-        </Card>
+          <DatePicker
+          style={{width: 200}}
+          date={this.state.date}
+          mode="date"
+          placeholder="select date"
+          format="YYYY-MM-DD"
+          minDate="2016-05-01"
+          maxDate="2016-06-01"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{
+            dateIcon: {
+              position: 'absolute',
+              left: 0,
+              top: 4,
+              marginLeft: 0
+            },
+            dateInput: {
+              marginLeft: 36
+            }
+            // ... You can check the source to find the other keys.
+          }}
+          onDateChange={(date) => {this.setState({date: date})}}
+      />
         </Content>
       </Container>
     );
@@ -92,4 +101,4 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
 });
 
-export default connect(mapStateToProps, bindAction)(PartySelect);
+export default connect(mapStateToProps, bindAction)(DateSelect);
