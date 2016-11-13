@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Container, Header, Title, Content, Text, Button, Tabs, Icon} from 'native-base';
+import { Container, Header, Title, Content, Text, Button, Tabs, Icon, Footer, FooterTab} from 'native-base';
 
 import { openDrawer } from '../../actions/drawer';
 import { setIndex } from '../../actions/list';
@@ -19,10 +19,11 @@ const {
 
 
 class TabSelect extends Component {
-
+  
   static propTypes = {
     name: React.PropTypes.string,
     list: React.PropTypes.arrayOf(React.PropTypes.string),
+    tabState: React.PropTypes.arrayOf(React.PropTypes.bool)
     setIndex: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
     pushRoute: React.PropTypes.func,
@@ -36,6 +37,7 @@ class TabSelect extends Component {
     this.props.setIndex(index);
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
+
   render() {
     return (
       <Container theme={myTheme} style={styles.container}>
@@ -43,11 +45,27 @@ class TabSelect extends Component {
           <Title>{(this.props.name) ? this.props.name : 'Party Type'}</Title>
         </Header>
         <Content>
-          <Tabs>
-              <Venue tabLabel='Venue' />
-              <Music tabLabel='Music' />
-          </Tabs>
         </Content>
+        <Footer >
+        <FooterTab>
+            <Button onPress={()=>alert('venues')}>
+                Venues
+                <Icon name='ios-apps-outline' />
+            </Button>
+            <Button>
+                Music
+                <Icon name='ios-camera-outline' />
+            </Button>
+            <Button active>
+                Catering
+                <Icon name='ios-compass' />
+            </Button>
+            <Button>
+                Extras
+                <Icon name='ios-contact-outline' />
+            </Button>
+        </FooterTab>
+        </Footer>
       </Container>
     );
   }
@@ -68,15 +86,23 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
 });
 
-function Venue(props) {
-  return (
-    <Text>Hold on</Text>
-  );
+class Venue extends Component {
+  render() {
+    return (
+      <Text>Venue Page Here</Text>
+    );
+  }
 }
-function Music(props) {
-  return (
-    <Text>Hold up</Text>
-  )
+
+
+
+
+class Music extends Component {
+  render() {
+    return (
+      <Text>Music Page Here</Text>
+    );
+  }
 }
 
 export default connect(mapStateToProps, bindAction)(TabSelect);
