@@ -32,6 +32,13 @@ class TabSelect extends Component {
     }),
   }
 
+generateIcon(icon) {
+    tabIdxToIcon = {0:"ios-people",1:"ios-musical-notes",2:"ios-wineglass",3:"ion-ios-star" }
+    if ( icon == tabIdxToIcon[this.props.currentTab] ) {
+        return icon + '-outline'
+    }
+    return icon
+  }
   pushRoute(route, index) {
     this.props.setIndex(index);
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
@@ -47,21 +54,21 @@ class TabSelect extends Component {
         </Content>
         <Footer >
         <FooterTab>
-            <Button>
+            <Button onPress={ () => {this.props.currTab=0}}>
                 Venues
-                <Icon name='ios-apps-outline' />
+                <Icon name={ this.generateIcon('ios-apps-outline') } />
             </Button>
             <Button>
                 Music
-                <Icon name='ios-camera-outline' />
+                <Icon name={ this.generateIcon('ios-apps-outline') } />
             </Button>
             <Button active>
                 Catering
-                <Icon name='ios-compass' />
+                <Icon name={ this.generateIcon('ios-apps-outline') } />
             </Button>
             <Button>
                 Extras
-                <Icon name='ios-contact-outline' />
+                <Icon name={ this.generateIcon('ios-apps-outline') } />
             </Button>
         </FooterTab>
         </Footer>
@@ -69,6 +76,7 @@ class TabSelect extends Component {
     );
   }
 }
+
 
 function bindAction(dispatch) {
   return {
@@ -84,6 +92,12 @@ const mapStateToProps = state => ({
   list: state.list.list,
   navigation: state.cardNavigation,
 });
+
+function CurrentTab(props) {
+  const currTab = 0
+}
+
+
 
 class Venue extends Component {
   render() {
