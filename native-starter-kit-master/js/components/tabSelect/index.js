@@ -1,22 +1,24 @@
 
 import React, { Component } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Container, Header, Title, Content, Text, Button, Icon } from 'native-base';
-import { Grid, Row } from 'react-native-easy-grid';
+import { Container, Header, Title, Content, Text, Button, Tabs, Icon} from 'native-base';
 
 import { openDrawer } from '../../actions/drawer';
 import { setIndex } from '../../actions/list';
 import myTheme from '../../themes/base-theme';
 import styles from './styles';
 
+
+
 const {
   reset,
   pushRoute,
 } = actions;
 
-class Uber extends Component {
+
+class TabSelect extends Component {
 
   static propTypes = {
     name: React.PropTypes.string,
@@ -34,35 +36,19 @@ class Uber extends Component {
     this.props.setIndex(index);
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
-
   render() {
     return (
       <Container theme={myTheme} style={styles.container}>
         <Header>
-          <Button transparent onPress={() => this.props.reset(this.props.navigation.key)}>
-            <Icon name="ios-power" />
-          </Button>
-
-          <Title>{(this.props.name) ? this.props.name : 'Home'}</Title>
-
-          <Button transparent onPress={this.props.openDrawer}>
-            <Icon name="ios-menu" />
-          </Button>
+          <Title>{(this.props.name) ? this.props.name : 'Party Type'}</Title>
         </Header>
-
         <Content>
-          <Grid style={styles.mt}>
-            {this.props.list.map((item, i) =>
-              <Row key={i}>
-                <TouchableOpacity
-                  style={styles.row}
-                  onPress={() => this.pushRoute('blankPage', i)}
-                >
-                  <Text style={styles.text}>{item}</Text>
-                </TouchableOpacity>
-              </Row>
-            )}
-          </Grid>
+          <Tabs>
+              <Venue tabLabel='Venue' />
+              <Music tabLabel='Music' />
+          //    <Catering tabLabel='Catering' />
+          //    <Extras tabLabel='Extras' />
+          </Tabs>
         </Content>
       </Container>
     );
@@ -84,4 +70,15 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
 });
 
-export default connect(mapStateToProps, bindAction)(Uber);
+function Venue(props) {
+  return (
+    <Text>Hold on</Text>
+  );
+}
+function Music(props) {
+  return (
+    <Text>Hold up</Text>
+  )
+}
+
+export default connect(mapStateToProps, bindAction)(TabSelect);

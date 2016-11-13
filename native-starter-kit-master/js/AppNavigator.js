@@ -8,7 +8,8 @@ import { actions } from 'react-native-navigation-redux-helpers';
 import { closeDrawer } from './actions/drawer';
 
 import Login from './components/login/';
-import Home from './components/home/';
+import PartySelect from './components/partySelect/';
+import TabSelect from './components/tabSelect';
 import BlankPage from './components/blankPage';
 import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
@@ -38,7 +39,7 @@ class AppNavigator extends Component {
     BackAndroid.addEventListener('hardwareBackPress', () => {
       const routes = this.props.navigation.routes;
 
-      if (routes[routes.length - 1].key === 'home' || routes[routes.length - 1].key === 'login') {
+      if (routes[routes.length - 1].key === 'party-select' || routes[routes.length - 1].key === 'login') {
         return false;
       }
 
@@ -77,9 +78,11 @@ class AppNavigator extends Component {
         return <SplashPage />;
       case 'login':
         return <Login />;
-      case 'home':
-        return <Home />;
-      case 'blankPage':
+      case 'partySelect':
+        return <PartySelect />;
+      case 'tabSelect':
+        return <TabSelect />;
+      case 'calendar':
         return <BlankPage />;
       default :
         return <Login />;

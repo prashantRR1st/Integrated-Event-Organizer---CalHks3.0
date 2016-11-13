@@ -17,21 +17,18 @@ class SideBar extends Component {
   }
 
   navigateTo(route) {
-    this.props.navigateTo(route, 'home');
+    this.props.navigateTo(route, 'partySelect');
   }
 
   render() {
     return (
       <Content theme={myTheme} style={styles.sidebar} >
         <List>
-          <ListItem button onPress={() => this.navigateTo('home')} >
+          <ListItem button onPress={() => this.navigateTo('partyselect')} >
             <Text>Home</Text>
           </ListItem>
           <ListItem button onPress={() => this.navigateTo('blankPage')} >
             <Text>Blank Page</Text>
-          </ListItem>
-          <ListItem button onPress={() => this.navigateTo('Uber')} >
-            <Text>Uber</Text>
           </ListItem>
         </List>
       </Content>

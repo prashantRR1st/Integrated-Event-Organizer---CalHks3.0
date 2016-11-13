@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Container, Header, Title, Content, Text, Button, Icon } from 'native-base';
+import { Container, Header, Title, Content, Text, Button, Icon,  Card, CardItem, Thumbnail } from 'native-base';
+
 import { Grid, Row } from 'react-native-easy-grid';
 
 import { openDrawer } from '../../actions/drawer';
@@ -15,8 +16,11 @@ const {
   reset,
   pushRoute,
 } = actions;
+const smallParty = require('../../../images/small.jpg')
+const largeParty = require('../../../images/large.jpg')
 
-class Home extends Component {
+
+class PartySelect extends Component {
 
   static propTypes = {
     name: React.PropTypes.string,
@@ -34,35 +38,39 @@ class Home extends Component {
     this.props.setIndex(index);
     this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
-
+  
   render() {
     return (
       <Container theme={myTheme} style={styles.container}>
         <Header>
+
+          <Title>{(this.props.name) ? this.props.name : 'Party Type'}</Title>
           <Button transparent onPress={() => this.props.reset(this.props.navigation.key)}>
             <Icon name="ios-power" />
           </Button>
-
-          <Title>{(this.props.name) ? this.props.name : 'Home'}</Title>
-
-          <Button transparent onPress={this.props.openDrawer}>
-            <Icon name="ios-menu" />
-          </Button>
         </Header>
-
         <Content>
-          <Grid style={styles.mt}>
-            {this.props.list.map((item, i) =>
-              <Row key={i}>
-                <TouchableOpacity
-                  style={styles.row}
-                  onPress={() => this.pushRoute('blankPage', i)}
-                >
-                  <Text style={styles.text}>{item}</Text>
-                </TouchableOpacity>
-              </Row>
-            )}
-          </Grid>
+
+        <Card >
+            <CardItem button onPress = {() => this.pushRoute('login')}>
+            <Image source={smallParty} />
+            </CardItem>
+            <CardItem button onPress = {() => this.pushRoute('login')}>
+              <Text>Small Party</Text>
+              <Text > {'<20 People'} </Text>
+            </CardItem>
+        </Card>
+
+
+        <Card>
+            <CardItem button onPress = {() => this.pushRoute('login')}>
+            <Image source={largeParty} />
+            </CardItem>
+            <CardItem button onPress = {() => this.pushRoute('login')}>
+              <Text>Large Party</Text>
+              <Text > {'20+ People'} </Text>
+            </CardItem>
+        </Card>
         </Content>
       </Container>
     );
@@ -84,4 +92,4 @@ const mapStateToProps = state => ({
   navigation: state.cardNavigation,
 });
 
-export default connect(mapStateToProps, bindAction)(Home);
+export default connect(mapStateToProps, bindAction)(PartySelect);
