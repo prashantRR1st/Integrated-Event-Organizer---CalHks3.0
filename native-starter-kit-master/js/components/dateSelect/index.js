@@ -42,7 +42,6 @@ class DateSelect extends Component {
 
   pushRoute(route, index) {
     this.props.setIndex(index);
-    this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
 
   render() {
@@ -50,8 +49,11 @@ class DateSelect extends Component {
       <Container theme={myTheme} style={styles.container}>
         <Header>
 
-          <Title>{(this.props.name) ? this.props.name : 'Party Type'}</Title>
-          <Button transparent onPress={() => this.props.reset(this.props.navigation.key)}>
+          <Button transparent onPress={() => this.pushRoute('partySelect')}>
+            <Icon name="ios-power" />
+          </Button>
+          <Title>{(this.props.name) ? this.props.name : 'Select A Date'}</Title>
+          <Button transparent onPress={() => this.pushRoute('mapSelect')}>
             <Icon name="ios-power" />
           </Button>
         </Header>
@@ -91,6 +93,7 @@ function bindAction(dispatch) {
     setIndex: index => dispatch(setIndex(index)),
     openDrawer: () => dispatch(openDrawer()),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
+    popRoute: (key) => dispatch(popRoute(key)),
     reset: key => dispatch(reset([{ key: 'login' }], key, 0)),
   };
 }
