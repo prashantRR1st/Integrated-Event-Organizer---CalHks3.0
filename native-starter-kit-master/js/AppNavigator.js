@@ -15,6 +15,8 @@ import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
 import { statusBarColor } from './themes/base-theme';
 import DateSelect from './components/dateSelect/';
+import MapSelect from './components/mapSelect/';
+
 
 
 const {
@@ -86,6 +88,8 @@ class AppNavigator extends Component {
         return <TabSelect />;
       case 'calendar':
         return <DateSelect />;
+      case 'mapSelect':
+        return <MapSelect />;
       default :
         return <Login />;
     }

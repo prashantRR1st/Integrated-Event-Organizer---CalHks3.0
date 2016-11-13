@@ -42,7 +42,9 @@ class DateSelect extends Component {
 
   pushRoute(route, index) {
     this.props.setIndex(index);
+    this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
+
 
   render() {
     return (
@@ -54,7 +56,7 @@ class DateSelect extends Component {
           </Button>
           <Title>{(this.props.name) ? this.props.name : 'Select A Date'}</Title>
           <Button transparent onPress={() => this.pushRoute('mapSelect')}>
-            <Icon name="ios-power" />
+            <Icon name="ios-arrow-forward" />
           </Button>
         </Header>
         <Content>
