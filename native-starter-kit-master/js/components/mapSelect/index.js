@@ -44,7 +44,7 @@ var Example = React.createClass({
         }}
         query={{
           // available options: https://developers.google.com/places/web-service/autocomplete
-          key: 'YOUR API KEY',
+          key: 'AIzaSyCI2cMkmvGYWiLsp7DsQ9OnJ2aDtzKoujk',
           language: 'en', // language of the results
           types: '(cities)', // default: 'geocode'
         }}
@@ -110,21 +110,30 @@ class MapSelect extends Component {
           </Button>
         </Header>
         <Content>
-
-        <Card >
-            <CardItem button onPress = {() => this.pushRoute('calendar')}>
-            <Text>Small Party</Text>
-            <Image source={smallParty} />
-            </CardItem>
-        </Card>
-
-
-        <Card>
-            <CardItem button onPress = {() => this.pushRoute('calendar')}>
-            <Text>Large Party</Text>
-            <Image source={largeParty} />
-            </CardItem>
-        </Card>
+          <GooglePlacesAutocomplete
+              placeholder='Enter Location'
+              minLength={2}
+              autoFocus={false}
+              fetchDetails={true}
+              styles={{
+                textInputContainer: {
+                  backgroundColor: 'rgba(0,0,0,0)',
+                  borderTopWidth: 0,
+                  borderBottomWidth:0
+                },
+                textInput: {
+                  marginLeft: 0,
+                  marginRight: 0,
+                  height: 38,
+                  color: '#5d5d5d',
+                  fontSize: 16
+                },
+                predefinedPlacesDescription: {
+                  color: '#1faadb'
+                },
+              }}
+              currentLocation={false}
+            />
         </Content>
       </Container>
     );
