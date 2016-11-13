@@ -19,11 +19,10 @@ const {
 
 
 class TabSelect extends Component {
-  
+
   static propTypes = {
     name: React.PropTypes.string,
     list: React.PropTypes.arrayOf(React.PropTypes.string),
-    tabState: React.PropTypes.arrayOf(React.PropTypes.bool)
     setIndex: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
     pushRoute: React.PropTypes.func,
@@ -48,7 +47,7 @@ class TabSelect extends Component {
         </Content>
         <Footer >
         <FooterTab>
-            <Button onPress={()=>alert('venues')}>
+            <Button>
                 Venues
                 <Icon name='ios-apps-outline' />
             </Button>
