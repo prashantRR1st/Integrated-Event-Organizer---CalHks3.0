@@ -42,12 +42,6 @@ var Example = React.createClass({
         getDefaultValue={() => {
           return ''; // text input default value
         }}
-        query={{
-          // available options: https://developers.google.com/places/web-service/autocomplete
-          key: 'AIzaSyCI2cMkmvGYWiLsp7DsQ9OnJ2aDtzKoujk',
-          language: 'en', // language of the results
-          types: '(cities)', // default: 'geocode'
-        }}
         styles={{
           description: {
             fontWeight: 'bold',
@@ -103,11 +97,13 @@ class MapSelect extends Component {
     return (
       <Container theme={myTheme} style={styles.container}>
         <Header>
-
-          <Title>{(this.props.name) ? this.props.name : 'Party Type'}</Title>
           <Button transparent onPress={() => this.props.reset(this.props.navigation.key)}>
             <Icon name="ios-power" />
           </Button>
+          <Title>{(this.props.name) ? this.props.name : 'Party Type'}</Title>
+            <Button transparent onPress={() => this.pushRoute('tabSelect')}>
+              <Icon name="ios-arrow-forward" />
+            </Button>
         </Header>
         <Content>
           <GooglePlacesAutocomplete
@@ -131,6 +127,12 @@ class MapSelect extends Component {
                 predefinedPlacesDescription: {
                   color: '#1faadb'
                 },
+              }}
+              query={{
+                // available options: https://developers.google.com/places/web-service/autocomplete
+                key: 'AIzaSyCI2cMkmvGYWiLsp7DsQ9OnJ2aDtzKoujk',
+                language: 'en', // language of the results
+                types: '(cities)', // default: 'geocode'
               }}
               currentLocation={false}
             />
