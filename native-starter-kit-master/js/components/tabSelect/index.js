@@ -46,8 +46,6 @@ class TabSelect extends Component {
           <Tabs>
               <Venue tabLabel='Venue' />
               <Music tabLabel='Music' />
-          //    <Catering tabLabel='Catering' />
-          //    <Extras tabLabel='Extras' />
           </Tabs>
         </Content>
       </Container>
